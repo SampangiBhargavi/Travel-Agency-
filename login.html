@@ -1,0 +1,863 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login - WanderWorld</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg travel-navbar navbar-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="index.html">
+
+            <i class="bi bi-airplane"></i>
+            WanderWorld
+
+        </a>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="destinations.html">
+                        Destinations
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="packages.html">
+                        Tour Packages
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="services.html">
+                        Services
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html">
+                        Gallery
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="offers.html">
+                        Offers
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="blog.html">
+                        Blog
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= LOGIN SECTION ================= -->
+
+<section class="section-padding bg-light min-vh-100">
+
+    <div class="container">
+
+        <div class="row justify-content-center">
+
+            <div class="col-md-7 col-lg-5">
+
+
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-body p-4 p-md-5">
+
+
+                        <!-- LOGO -->
+
+                        <div class="text-center mb-4">
+
+                            <div class="mb-3">
+
+                                <i class="bi bi-person-circle display-4 text-primary"></i>
+
+                            </div>
+
+                            <h2 class="fw-bold">
+                                Welcome Back
+                            </h2>
+
+                            <p class="text-muted">
+                                Login to your WanderWorld account
+                            </p>
+
+                        </div>
+
+
+
+                        <!-- LOGIN FORM -->
+
+                        <form id="loginForm">
+
+
+                            <!-- EMAIL -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Email Address
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="bi bi-envelope"></i>
+
+                                    </span>
+
+                                    <input type="email"
+                                           id="loginEmail"
+                                           class="form-control"
+                                           placeholder="Enter your email"
+                                           required>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- PASSWORD -->
+
+                            <div class="mb-3">
+
+                                <label class="form-label fw-semibold">
+                                    Password
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="bi bi-lock"></i>
+
+                                    </span>
+
+                                    <input type="password"
+                                           id="loginPassword"
+                                           class="form-control"
+                                           placeholder="Enter your password"
+                                           required>
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- REMEMBER / FORGOT -->
+
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+
+                                <div class="form-check">
+
+                                    <input class="form-check-input"
+                                           type="checkbox"
+                                           id="rememberMe">
+
+                                    <label class="form-check-label"
+                                           for="rememberMe">
+
+                                        Remember Me
+
+                                    </label>
+
+                                </div>
+
+
+                                <a href="#"
+                                   data-bs-toggle="modal"
+                                   data-bs-target="#forgotPasswordModal">
+
+                                    Forgot Password?
+
+                                </a>
+
+                            </div>
+
+
+
+                            <!-- LOGIN BUTTON -->
+
+                            <button type="submit"
+                                    class="btn btn-travel w-100">
+
+                                <i class="bi bi-box-arrow-in-right"></i>
+
+                                Login
+
+                            </button>
+
+
+                        </form>
+
+
+
+                        <!-- CREATE ACCOUNT -->
+
+                        <div class="text-center mt-4">
+
+                            <p class="text-muted mb-2">
+                                Don't have an account?
+                            </p>
+
+                            <button class="btn btn-outline-primary"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#registerModal">
+
+                                <i class="bi bi-person-plus"></i>
+                                Create Account
+
+                            </button>
+
+                        </div>
+
+
+
+                        <hr class="my-4">
+
+
+
+                        <!-- ADMIN LOGIN -->
+
+                        <div class="text-center">
+
+                            <p class="text-muted mb-2">
+                                Are you an administrator?
+                            </p>
+
+                            <a href="admin-login.html"
+                               class="btn btn-outline-dark">
+
+                                <i class="bi bi-shield-lock"></i>
+                                Admin Login
+
+                            </a>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FORGOT PASSWORD MODAL ================= -->
+
+<div class="modal fade"
+     id="forgotPasswordModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered">
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Reset Password
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <p class="text-muted">
+                    Enter your email address and we'll help you
+                    reset your password.
+                </p>
+
+
+                <form id="forgotPasswordForm">
+
+                    <div class="mb-3">
+
+                        <label class="form-label">
+                            Email Address
+                        </label>
+
+                        <input type="email"
+                               class="form-control"
+                               placeholder="Enter your email"
+                               required>
+
+                    </div>
+
+
+                    <button type="submit"
+                            class="btn btn-travel w-100">
+
+                        Send Reset Link
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= REGISTER MODAL ================= -->
+
+<div class="modal fade"
+     id="registerModal"
+     tabindex="-1"
+     aria-hidden="true">
+
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+
+        <div class="modal-content">
+
+
+            <div class="modal-header">
+
+                <h5 class="modal-title">
+                    Create WanderWorld Account
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <form id="registerForm">
+
+
+                    <div class="row g-3">
+
+
+                        <!-- NAME -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Full Name
+                            </label>
+
+                            <input type="text"
+                                   id="registerName"
+                                   class="form-control"
+                                   placeholder="Enter your full name"
+                                   required>
+
+                        </div>
+
+
+
+                        <!-- EMAIL -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Email Address
+                            </label>
+
+                            <input type="email"
+                                   id="registerEmail"
+                                   class="form-control"
+                                   placeholder="Enter your email"
+                                   required>
+
+                        </div>
+
+
+
+                        <!-- PHONE -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Phone Number
+                            </label>
+
+                            <input type="tel"
+                                   id="registerPhone"
+                                   class="form-control"
+                                   placeholder="Enter your phone number"
+                                   required>
+
+                        </div>
+
+
+
+                        <!-- PASSWORD -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Password
+                            </label>
+
+                            <input type="password"
+                                   id="registerPassword"
+                                   class="form-control"
+                                   placeholder="Create a password"
+                                   required>
+
+                        </div>
+
+
+
+                        <!-- CONFIRM PASSWORD -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                Confirm Password
+                            </label>
+
+                            <input type="password"
+                                   id="confirmPassword"
+                                   class="form-control"
+                                   placeholder="Confirm your password"
+                                   required>
+
+                        </div>
+
+
+
+                        <!-- CITY -->
+
+                        <div class="col-md-6">
+
+                            <label class="form-label">
+                                City
+                            </label>
+
+                            <input type="text"
+                                   id="registerCity"
+                                   class="form-control"
+                                   placeholder="Enter your city"
+                                   required>
+
+                        </div>
+
+
+
+                        <!-- TERMS -->
+
+                        <div class="col-12">
+
+                            <div class="form-check">
+
+                                <input class="form-check-input"
+                                       type="checkbox"
+                                       id="terms"
+                                       required>
+
+                                <label class="form-check-label"
+                                       for="terms">
+
+                                    I agree to the Terms & Conditions.
+
+                                </label>
+
+                            </div>
+
+                        </div>
+
+
+
+                        <!-- REGISTER -->
+
+                        <div class="col-12">
+
+                            <button type="submit"
+                                    class="btn btn-travel w-100">
+
+                                <i class="bi bi-person-plus"></i>
+
+                                Create Account
+
+                            </button>
+
+                        </div>
+
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="travel-footer">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <h4 class="fw-bold">
+
+                    <i class="bi bi-airplane"></i>
+                    WanderWorld
+
+                </h4>
+
+                <p>
+                    Your trusted travel partner for unforgettable
+                    journeys and amazing experiences.
+                </p>
+
+            </div>
+
+
+            <div class="col-md-2">
+
+                <h5>
+                    Quick Links
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="destinations.html">Destinations</a>
+                    </li>
+
+                    <li>
+                        <a href="packages.html">Packages</a>
+                    </li>
+
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <h5>
+                    Services
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li>Flight Booking</li>
+                    <li>Hotel Booking</li>
+                    <li>Tour Packages</li>
+                    <li>Travel Insurance</li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-md-3">
+
+                <h5>
+                    Contact
+                </h5>
+
+                <p>
+                    <i class="bi bi-telephone"></i>
+                    +91 98765 43210
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    info@wanderworld.com
+                </p>
+
+                <p>
+                    <i class="bi bi-geo-alt"></i>
+                    Hyderabad, India
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom text-center mt-4 pt-3">
+
+            <p class="mb-0">
+                © 2026 WanderWorld. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================= BOOTSTRAP JS ================= -->
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+
+<!-- ================= LOGIN JS ================= -->
+
+<script>
+
+    /*
+        Demo user login
+
+        For the current frontend project:
+        Email    : user@wanderworld.com
+        Password : user123
+    */
+
+
+    const loginForm = document.getElementById("loginForm");
+
+
+    loginForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+
+        const email = document.getElementById("loginEmail").value;
+
+        const password = document.getElementById("loginPassword").value;
+
+
+        if (email === "user@wanderworld.com" &&
+            password === "user123") {
+
+            localStorage.setItem(
+                "wanderWorldUserLoggedIn",
+                "true"
+            );
+
+            localStorage.setItem(
+                "wanderWorldUserEmail",
+                email
+            );
+
+
+            alert("Login successful! Welcome to WanderWorld.");
+
+            window.location.href = "index.html";
+
+        }
+
+        else {
+
+            alert(
+                "Invalid email or password.\n\nDemo Login:\nEmail: user@wanderworld.com\nPassword: user123"
+            );
+
+        }
+
+    });
+
+
+
+    /* ================= FORGOT PASSWORD ================= */
+
+    const forgotPasswordForm =
+        document.getElementById("forgotPasswordForm");
+
+
+    forgotPasswordForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            alert(
+                "Password reset instructions have been sent to your email."
+            );
+
+            forgotPasswordForm.reset();
+
+        }
+    );
+
+
+
+    /* ================= REGISTER ================= */
+
+    const registerForm =
+        document.getElementById("registerForm");
+
+
+    registerForm.addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const password =
+                document.getElementById("registerPassword").value;
+
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+
+            if (password !== confirmPassword) {
+
+                alert("Passwords do not match.");
+
+                return;
+
+            }
+
+
+            const user = {
+
+                name:
+                    document.getElementById("registerName").value,
+
+                email:
+                    document.getElementById("registerEmail").value,
+
+                phone:
+                    document.getElementById("registerPhone").value,
+
+                password:
+                    password,
+
+                city:
+                    document.getElementById("registerCity").value
+
+            };
+
+
+            localStorage.setItem(
+                "wanderWorldUser",
+                JSON.stringify(user)
+            );
+
+
+            alert(
+                "Account created successfully! You can now login."
+            );
+
+
+            registerForm.reset();
+
+
+            const registerModal =
+                bootstrap.Modal.getInstance(
+                    document.getElementById("registerModal")
+                );
+
+
+            if (registerModal) {
+
+                registerModal.hide();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
+```

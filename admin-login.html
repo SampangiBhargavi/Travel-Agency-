@@ -1,0 +1,108 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - WanderWorld</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+
+<nav class="navbar travel-navbar navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            <i class="bi bi-airplane"></i> WanderWorld
+        </a>
+        <a href="index.html" class="btn btn-outline-light btn-sm">
+            <i class="bi bi-house"></i> Home
+        </a>
+    </div>
+</nav>
+
+<section class="min-vh-100 d-flex align-items-center py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-7 col-lg-5">
+
+                <div class="card border-0 shadow-sm">
+                    <div class="card-body p-4 p-md-5">
+
+                        <div class="text-center mb-4">
+                            <i class="bi bi-shield-lock display-3 text-primary"></i>
+                            <h2 class="fw-bold mt-3">Admin Login</h2>
+                            <p class="text-muted">Sign in to manage WanderWorld</p>
+                        </div>
+
+                        <form id="adminLoginForm">
+
+                            <div class="mb-3">
+                                <label for="adminUsername" class="form-label">
+                                    Username
+                                </label>
+                                <input type="text" id="adminUsername"
+                                       class="form-control"
+                                       placeholder="Enter admin username" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="adminPassword" class="form-label">
+                                    Password
+                                </label>
+                                <input type="password" id="adminPassword"
+                                       class="form-control"
+                                       placeholder="Enter admin password" required>
+                            </div>
+
+                            <div id="loginError" class="alert alert-danger d-none">
+                                Invalid username or password.
+                            </div>
+
+                            <button type="submit" class="btn btn-travel w-100">
+                                <i class="bi bi-box-arrow-in-right"></i>
+                                Login to Dashboard
+                            </button>
+
+                        </form>
+
+                        <div class="text-center mt-4">
+                            <a href="login.html">Back to User Login</a>
+                        </div>
+
+                        <div class="alert alert-secondary mt-4 mb-0 small">
+                            <strong>Demo credentials</strong><br>
+                            Username: admin<br>
+                            Password: admin123
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const username = document.getElementById("adminUsername").value.trim();
+    const password = document.getElementById("adminPassword").value;
+    const error = document.getElementById("loginError");
+
+    if (username === "admin" && password === "admin123") {
+        localStorage.setItem("wanderWorldAdminLoggedIn", "true");
+        window.location.href = "admin.html";
+    } else {
+        error.classList.remove("d-none");
+    }
+});
+</script>
+
+</body>
+</html>
+```

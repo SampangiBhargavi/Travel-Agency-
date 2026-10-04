@@ -1,0 +1,656 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Travel Blog - WanderWorld</title>
+
+    <link rel="stylesheet"
+          href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+    <link rel="stylesheet"
+          href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+    <link rel="stylesheet"
+          href="style.css">
+
+</head>
+
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav class="navbar navbar-expand-lg navbar-dark travel-navbar sticky-top">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold"
+           href="index.html">
+
+            <i class="bi bi-airplane-engines-fill"></i>
+            WanderWorld
+
+        </a>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse"
+             id="mainNavbar">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="index.html">Home</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="destinations.html">Destinations</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="packages.html">Tour Packages</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="about.html">About</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="services.html">Services</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="gallery.html">Gallery</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="offers.html">Offers</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="testimonials.html">Testimonials</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active"
+                       href="blog.html">Blog</a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link"
+                       href="contact.html">Contact</a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+
+                    <a class="btn btn-light btn-sm px-3 mt-1 mt-lg-0"
+                       href="login.html">
+
+                        Login
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- PAGE HERO -->
+
+<section class="page-hero">
+
+    <div class="container text-center">
+
+        <h1 class="fw-bold">
+            Travel Blog
+        </h1>
+
+        <p class="lead mb-0">
+            Travel inspiration, tips and destination guides
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- BLOG -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="text-center mb-4">
+
+            <h2 class="section-title">
+                Latest Travel Articles
+            </h2>
+
+            <p class="text-muted">
+                Discover travel tips and inspiration from WanderWorld.
+            </p>
+
+        </div>
+
+
+        <!-- SEARCH -->
+
+        <div class="row g-3 mb-5">
+
+            <div class="col-md-8">
+
+                <div class="input-group">
+
+                    <span class="input-group-text">
+                        <i class="bi bi-search"></i>
+                    </span>
+
+                    <input type="text"
+                           id="blogSearch"
+                           class="form-control"
+                           placeholder="Search articles...">
+
+                </div>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <select id="blogCategory"
+                        class="form-select">
+
+                    <option value="All">
+                        All Categories
+                    </option>
+
+                    <option value="Travel Guide">
+                        Travel Guide
+                    </option>
+
+                    <option value="Travel Tips">
+                        Travel Tips
+                    </option>
+
+                    <option value="Adventure">
+                        Adventure
+                    </option>
+
+                    <option value="Destinations">
+                        Destinations
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <!-- BLOG COUNT -->
+
+        <div class="mb-3">
+
+            <span class="text-muted">
+
+                Articles:
+                <strong id="blogCount">0</strong>
+
+            </span>
+
+        </div>
+
+
+        <!-- BLOG CONTAINER -->
+
+        <div class="row g-4"
+             id="blogContainer">
+        </div>
+
+
+        <!-- NO RESULTS -->
+
+        <div id="noBlogs"
+             class="text-center py-5 d-none">
+
+            <i class="bi bi-journal-x fs-1 text-muted"></i>
+
+            <h4 class="mt-3">
+                No articles found
+            </h4>
+
+            <p class="text-muted">
+                Try another search or category.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- BLOG MODAL -->
+
+<div class="modal fade"
+     id="blogModal"
+     tabindex="-1">
+
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+
+        <div class="modal-content">
+
+            <div class="modal-header">
+
+                <h5 class="modal-title"
+                    id="blogModalTitle">
+                </h5>
+
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal">
+                </button>
+
+            </div>
+
+
+            <div class="modal-body">
+
+                <img id="blogModalImage"
+                     class="img-fluid rounded mb-4 w-100"
+                     style="max-height:400px;object-fit:cover;"
+                     alt="Blog Image">
+
+
+                <div class="mb-3">
+
+                    <span class="badge bg-primary"
+                          id="blogModalCategory">
+                    </span>
+
+                    <span class="text-muted ms-2"
+                          id="blogModalMeta">
+                    </span>
+
+                </div>
+
+
+                <h3 id="blogModalHeading"
+                    class="fw-bold">
+                </h3>
+
+
+                <p id="blogModalContent"
+                   class="text-muted">
+                </p>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Close
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- FOOTER -->
+
+<footer class="travel-footer">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+            <div class="col-md-4">
+
+                <h5>
+                    <i class="bi bi-airplane-engines-fill"></i>
+                    WanderWorld
+                </h5>
+
+                <p>
+                    Your trusted travel partner for memorable
+                    journeys and unforgettable experiences.
+                </p>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <h5>
+                    Quick Links
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li>
+                        <a href="destinations.html">
+                            Destinations
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="packages.html">
+                            Tour Packages
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="offers.html">
+                            Offers
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="contact.html">
+                            Contact
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+            <div class="col-md-4">
+
+                <h5>
+                    Contact Us
+                </h5>
+
+                <p>
+                    <i class="bi bi-geo-alt"></i>
+                    Hyderabad, Telangana
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    info@wanderworld.com
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom text-center">
+
+            <p class="mb-0">
+                © 2026 WanderWorld Travel Agency.
+                All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<script src="blog.js"></script>
+
+
+<script>
+
+function displayBlogs(blogs) {
+
+    const container =
+        document.getElementById("blogContainer");
+
+    const noBlogs =
+        document.getElementById("noBlogs");
+
+    const count =
+        document.getElementById("blogCount");
+
+
+    container.innerHTML = "";
+
+    count.textContent = blogs.length;
+
+
+    if (blogs.length === 0) {
+
+        noBlogs.classList.remove("d-none");
+
+        return;
+
+    }
+
+
+    noBlogs.classList.add("d-none");
+
+
+    blogs.forEach(function (blog) {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "col-md-6 col-lg-4";
+
+
+        card.innerHTML = `
+
+            <div class="card blog-card h-100 shadow-sm border-0">
+
+                <img src="${blog.image}"
+                     class="card-img-top"
+                     style="height:220px;object-fit:cover;"
+                     alt="${blog.title}">
+
+
+                <div class="card-body d-flex flex-column">
+
+                    <div class="mb-2">
+
+                        <span class="badge bg-primary">
+                            ${blog.category}
+                        </span>
+
+                    </div>
+
+
+                    <h5 class="fw-bold">
+                        ${blog.title}
+                    </h5>
+
+
+                    <p class="text-muted">
+                        ${blog.excerpt}
+                    </p>
+
+
+                    <div class="mt-auto">
+
+                        <small class="text-muted d-block mb-3">
+
+                            <i class="bi bi-person"></i>
+                            ${blog.author}
+
+                            &nbsp; | &nbsp;
+
+                            <i class="bi bi-calendar"></i>
+                            ${blog.date}
+
+                        </small>
+
+
+                        <button class="btn btn-travel w-100"
+                                onclick="openBlog(${blog.id})">
+
+                            Read Article
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+function openBlog(id) {
+
+    const blog =
+        getBlogById(id);
+
+
+    if (!blog) {
+        return;
+    }
+
+
+    document.getElementById(
+        "blogModalTitle"
+    ).textContent = blog.title;
+
+
+    document.getElementById(
+        "blogModalHeading"
+    ).textContent = blog.title;
+
+
+    document.getElementById(
+        "blogModalCategory"
+    ).textContent = blog.category;
+
+
+    document.getElementById(
+        "blogModalMeta"
+    ).textContent =
+        blog.author + " • " + blog.date;
+
+
+    document.getElementById(
+        "blogModalContent"
+    ).textContent = blog.content;
+
+
+    document.getElementById(
+        "blogModalImage"
+    ).src = blog.image;
+
+
+    new bootstrap.Modal(
+        document.getElementById("blogModal")
+    ).show();
+
+}
+
+
+function applyBlogFilters() {
+
+    const search =
+        document.getElementById(
+            "blogSearch"
+        ).value;
+
+
+    const category =
+        document.getElementById(
+            "blogCategory"
+        ).value;
+
+
+    let blogs =
+        searchBlogs(search);
+
+
+    if (category !== "All") {
+
+        blogs =
+            blogs.filter(function (blog) {
+
+                return blog.category === category;
+
+            });
+
+    }
+
+
+    displayBlogs(blogs);
+
+}
+
+
+document.getElementById(
+    "blogSearch"
+).addEventListener(
+    "input",
+    applyBlogFilters
+);
+
+
+document.getElementById(
+    "blogCategory"
+).addEventListener(
+    "change",
+    applyBlogFilters
+);
+
+
+displayBlogs(getBlogs());
+
+</script>
+
+</body>
+
+</html>
+```

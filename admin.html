@@ -1,0 +1,3916 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+```
+<meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<title>Admin Dashboard - WanderWorld</title>
+
+<link rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.css">
+
+<link rel="stylesheet"
+      href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
+<link rel="stylesheet"
+      href="style.css">
+
+<style>
+
+    body {
+        background: #f4f7fb;
+    }
+
+    .admin-sidebar {
+        min-height: 100vh;
+        background: #07579a;
+        color: white;
+        position: fixed;
+        width: 250px;
+        left: 0;
+        top: 0;
+        padding: 20px 15px;
+        z-index: 1000;
+    }
+
+    .admin-sidebar h3 {
+        margin-bottom: 25px;
+    }
+
+    .admin-sidebar .nav-link {
+        color: white;
+        padding: 11px 12px;
+        border-radius: 6px;
+        margin-bottom: 5px;
+        cursor: pointer;
+    }
+
+    .admin-sidebar .nav-link:hover,
+    .admin-sidebar .nav-link.active {
+        background: rgba(255,255,255,0.18);
+    }
+
+    .admin-main {
+        margin-left: 250px;
+        padding: 30px;
+    }
+
+    .dashboard-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .dashboard-icon {
+        font-size: 35px;
+    }
+
+    .admin-section {
+        display: none;
+    }
+
+    .admin-section.active {
+        display: block;
+    }
+
+    .admin-table {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .admin-card {
+        border: none;
+        border-radius: 12px;
+        box-shadow: 0 3px 12px rgba(0,0,0,0.08);
+    }
+
+    .modal-header {
+        background: #07579a;
+        color: white;
+    }
+
+    .modal-header .btn-close {
+        filter: brightness(0) invert(1);
+    }
+
+    @media (max-width: 991px) {
+
+        .admin-sidebar {
+            width: 220px;
+        }
+
+        .admin-main {
+            margin-left: 220px;
+        }
+
+    }
+
+    @media (max-width: 767px) {
+
+        .admin-sidebar {
+            position: relative;
+            width: 100%;
+            min-height: auto;
+        }
+
+        .admin-main {
+            margin-left: 0;
+            padding: 15px;
+        }
+
+    }
+
+</style>
+```
+
+</head>
+
+<body>
+
+<!-- SIDEBAR -->
+
+<div class="admin-sidebar">
+
+```
+<h3 class="fw-bold">
+
+    <i class="bi bi-airplane"></i>
+
+    WanderWorld
+
+</h3>
+
+<p class="small">
+    Admin Dashboard
+</p>
+
+
+<hr>
+
+
+<ul class="nav flex-column">
+
+
+    <li class="nav-item">
+
+        <a class="nav-link active"
+           onclick="showSection('dashboard', this)">
+
+            <i class="bi bi-speedometer2 me-2"></i>
+
+            Dashboard
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('destinations', this)">
+
+            <i class="bi bi-geo-alt me-2"></i>
+
+            Destinations
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('packages', this)">
+
+            <i class="bi bi-suitcase me-2"></i>
+
+            Tour Packages
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('bookings', this)">
+
+            <i class="bi bi-calendar-check me-2"></i>
+
+            Bookings
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('customers', this)">
+
+            <i class="bi bi-people me-2"></i>
+
+            Customers
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('gallery', this)">
+
+            <i class="bi bi-images me-2"></i>
+
+            Gallery
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('offers', this)">
+
+            <i class="bi bi-percent me-2"></i>
+
+            Offers
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('blogs', this)">
+
+            <i class="bi bi-journal-text me-2"></i>
+
+            Blog
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="showSection('reviews', this)">
+
+            <i class="bi bi-star me-2"></i>
+
+            Reviews
+
+        </a>
+
+    </li>
+
+
+    <hr>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           href="index.html">
+
+            <i class="bi bi-globe me-2"></i>
+
+            View Website
+
+        </a>
+
+    </li>
+
+
+    <li class="nav-item">
+
+        <a class="nav-link"
+           onclick="adminLogout()">
+
+            <i class="bi bi-box-arrow-right me-2"></i>
+
+            Logout
+
+        </a>
+
+    </li>
+
+</ul>
+```
+
+</div>
+
+<!-- MAIN -->
+
+<div class="admin-main">
+
+<!-- ================= DASHBOARD ================= -->
+
+<section id="dashboard"
+         class="admin-section active">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="fw-bold">
+            Dashboard
+        </h2>
+
+        <p class="text-muted">
+            Welcome to WanderWorld Admin Panel.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="row g-4">
+
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-4">
+
+            <div class="d-flex justify-content-between">
+
+                <div>
+
+                    <h6 class="text-muted">
+                        Destinations
+                    </h6>
+
+                    <h2 id="dashboardDestinations">
+                        0
+                    </h2>
+
+                </div>
+
+                <i class="bi bi-geo-alt dashboard-icon text-primary">
+                </i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-4">
+
+            <div class="d-flex justify-content-between">
+
+                <div>
+
+                    <h6 class="text-muted">
+                        Packages
+                    </h6>
+
+                    <h2 id="dashboardPackages">
+                        0
+                    </h2>
+
+                </div>
+
+                <i class="bi bi-suitcase dashboard-icon text-success">
+                </i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-4">
+
+            <div class="d-flex justify-content-between">
+
+                <div>
+
+                    <h6 class="text-muted">
+                        Bookings
+                    </h6>
+
+                    <h2 id="dashboardBookings">
+                        0
+                    </h2>
+
+                </div>
+
+                <i class="bi bi-calendar-check dashboard-icon text-warning">
+                </i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-4">
+
+            <div class="d-flex justify-content-between">
+
+                <div>
+
+                    <h6 class="text-muted">
+                        Reviews
+                    </h6>
+
+                    <h2 id="dashboardReviews">
+                        0
+                    </h2>
+
+                </div>
+
+                <i class="bi bi-star dashboard-icon text-danger">
+                </i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<div class="card admin-card mt-4 p-4">
+
+    <h4 class="mb-3">
+        Quick Overview
+    </h4>
+
+    <p class="text-muted">
+        Use the sidebar to manage destinations, packages,
+        bookings, customers, gallery images, offers,
+        blog posts and customer reviews.
+    </p>
+
+</div>
+```
+
+</section>
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section id="destinations"
+         class="admin-section">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">
+        Destinations
+    </h2>
+
+    <button class="btn btn-primary"
+            onclick="openDestinationModal()">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Add Destination
+
+    </button>
+
+</div>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Country</th>
+                    <th>Region</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="destinationsTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= PACKAGES ================= -->
+
+<section id="packages"
+         class="admin-section">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">
+        Tour Packages
+    </h2>
+
+    <button class="btn btn-primary"
+            onclick="openPackageModal()">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Add Package
+
+    </button>
+
+</div>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Package</th>
+                    <th>Destination</th>
+                    <th>Price</th>
+                    <th>Duration</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="packagesTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= BOOKINGS ================= -->
+
+<section id="bookings"
+         class="admin-section">
+
+```
+<h2 class="fw-bold mb-4">
+    Bookings
+</h2>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Booking ID</th>
+                    <th>Customer</th>
+                    <th>Package</th>
+                    <th>Travel Date</th>
+                    <th>Travelers</th>
+                    <th>Total</th>
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="bookingsTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= CUSTOMERS ================= -->
+
+<section id="customers"
+         class="admin-section">
+
+```
+<h2 class="fw-bold mb-4">
+    Customers
+</h2>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Bookings</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="customersTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= GALLERY ================= -->
+
+<section id="gallery"
+         class="admin-section">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">
+        Gallery
+    </h2>
+
+    <button class="btn btn-primary"
+            onclick="openGalleryModal()">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Add Image
+
+    </button>
+
+</div>
+
+
+<div class="row g-4"
+     id="galleryAdminContainer">
+
+</div>
+```
+
+</section>
+
+<!-- ================= OFFERS ================= -->
+
+<section id="offers"
+         class="admin-section">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">
+        Offers
+    </h2>
+
+    <button class="btn btn-primary"
+            onclick="openOfferModal()">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Add Offer
+
+    </button>
+
+</div>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>Title</th>
+                    <th>Discount</th>
+                    <th>Valid Until</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="offersTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= BLOG ================= -->
+
+<section id="blogs"
+         class="admin-section">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <h2 class="fw-bold">
+        Blog Management
+    </h2>
+
+    <button class="btn btn-primary"
+            onclick="openBlogModal()">
+
+        <i class="bi bi-plus-circle"></i>
+
+        Add Blog
+
+    </button>
+
+</div>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Category</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="blogsTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+<!-- ================= REVIEWS ================= -->
+
+<section id="reviews"
+         class="admin-section">
+
+```
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+
+        <h2 class="fw-bold">
+            Review Management
+        </h2>
+
+        <p class="text-muted">
+            Approve, edit or delete customer reviews.
+        </p>
+
+    </div>
+
+</div>
+
+
+<div class="card admin-card p-3">
+
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+                    <th>Customer</th>
+                    <th>Location</th>
+                    <th>Rating</th>
+                    <th>Review</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="reviewsTable">
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+```
+
+</section>
+
+</div>
+
+<!-- ================= DESTINATION MODAL ================= -->
+
+<div class="modal fade"
+     id="destinationModal"
+     tabindex="-1">
+
+```
+<div class="modal-dialog">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h5 class="modal-title"
+                id="destinationModalTitle">
+
+                Add Destination
+
+            </h5>
+
+            <button class="btn-close"
+                    data-bs-dismiss="modal">
+            </button>
+
+        </div>
+
+
+        <form id="destinationForm">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="destinationId">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Destination Name
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="destinationName"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Country
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="destinationCountry"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Region
+                    </label>
+
+                    <select class="form-select"
+                            id="destinationRegion"
+                            required>
+
+                        <option value="Beach">
+                            Beach
+                        </option>
+
+                        <option value="Mountain">
+                            Mountain
+                        </option>
+
+                        <option value="Nature">
+                            Nature
+                        </option>
+
+                        <option value="International">
+                            International
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ================= PACKAGE MODAL ================= -->
+
+<div class="modal fade"
+     id="packageModal"
+     tabindex="-1">
+
+```
+<div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h5 class="modal-title"
+                id="packageModalTitle">
+
+                Add Package
+
+            </h5>
+
+            <button class="btn-close"
+                    data-bs-dismiss="modal">
+            </button>
+
+        </div>
+
+
+        <form id="packageForm">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="packageId">
+
+
+                <div class="row">
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Package Name
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="packageName"
+                               required>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Destination
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="packageDestination"
+                               required>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Price
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               id="packagePrice"
+                               required>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Old Price
+                        </label>
+
+                        <input type="number"
+                               class="form-control"
+                               id="packageOldPrice">
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Duration
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="packageDuration"
+                               placeholder="5 Days / 4 Nights"
+                               required>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Rating
+                        </label>
+
+                        <input type="number"
+                               step="0.1"
+                               min="0"
+                               max="5"
+                               class="form-control"
+                               id="packageRating"
+                               value="5">
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ================= GALLERY MODAL ================= -->
+
+<div class="modal fade"
+     id="galleryModal"
+     tabindex="-1">
+
+```
+<div class="modal-dialog">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h5 class="modal-title">
+                Add Gallery Image
+            </h5>
+
+            <button class="btn-close"
+                    data-bs-dismiss="modal">
+            </button>
+
+        </div>
+
+
+        <form id="galleryForm">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="galleryId">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Image Title
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="galleryTitle"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Image URL
+                    </label>
+
+                    <input type="url"
+                           class="form-control"
+                           id="galleryImage"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Category
+                    </label>
+
+                    <select class="form-select"
+                            id="galleryCategory">
+
+                        <option value="Beach">
+                            Beach
+                        </option>
+
+                        <option value="Mountain">
+                            Mountain
+                        </option>
+
+                        <option value="Nature">
+                            Nature
+                        </option>
+
+                        <option value="International">
+                            International
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ================= OFFER MODAL ================= -->
+
+<div class="modal fade"
+     id="offerModal"
+     tabindex="-1">
+
+```
+<div class="modal-dialog">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h5 class="modal-title">
+                Add Offer
+            </h5>
+
+            <button class="btn-close"
+                    data-bs-dismiss="modal">
+            </button>
+
+        </div>
+
+
+        <form id="offerForm">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="offerId">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Offer Title
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="offerTitle"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Description
+                    </label>
+
+                    <textarea class="form-control"
+                              id="offerDescription"
+                              required></textarea>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Discount
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="offerDiscount"
+                               placeholder="25%"
+                               required>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Valid Until
+                        </label>
+
+                        <input type="date"
+                               class="form-control"
+                               id="offerValidUntil"
+                               required>
+
+                    </div>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Image URL
+                    </label>
+
+                    <input type="url"
+                           class="form-control"
+                           id="offerImage"
+                           required>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ================= BLOG MODAL ================= -->
+
+<div class="modal fade"
+     id="blogModal"
+     tabindex="-1">
+
+```
+<div class="modal-dialog modal-lg">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h5 class="modal-title"
+                id="blogModalTitle">
+
+                Add Blog
+
+            </h5>
+
+            <button class="btn-close"
+                    data-bs-dismiss="modal">
+            </button>
+
+        </div>
+
+
+        <form id="blogForm">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="blogId">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Blog Title
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="blogTitle"
+                           required>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Category
+                        </label>
+
+                        <select class="form-select"
+                                id="blogCategory">
+
+                            <option value="Travel Guide">
+                                Travel Guide
+                            </option>
+
+                            <option value="Travel Tips">
+                                Travel Tips
+                            </option>
+
+                            <option value="Adventure">
+                                Adventure
+                            </option>
+
+                            <option value="Destinations">
+                                Destinations
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="col-md-6 mb-3">
+
+                        <label class="form-label">
+                            Author
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="blogAuthor"
+                               value="WanderWorld">
+
+                    </div>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Date
+                    </label>
+
+                    <input type="date"
+                           class="form-control"
+                           id="blogDate"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Image URL
+                    </label>
+
+                    <input type="url"
+                           class="form-control"
+                           id="blogImage"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Short Description
+                    </label>
+
+                    <textarea class="form-control"
+                              id="blogExcerpt"
+                              rows="2"
+                              required></textarea>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Blog Content
+                    </label>
+
+                    <textarea class="form-control"
+                              id="blogContent"
+                              rows="5"
+                              required></textarea>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <select class="form-select"
+                            id="blogStatus">
+
+                        <option value="Published">
+                            Published
+                        </option>
+
+                        <option value="Draft">
+                            Draft
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save Blog
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- ================= REVIEW MODAL ================= -->
+
+<div class="modal fade"
+     id="reviewModal"
+     tabindex="-1">
+
+```
+<div class="modal-dialog">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h5 class="modal-title">
+                Edit Review
+            </h5>
+
+            <button class="btn-close"
+                    data-bs-dismiss="modal">
+            </button>
+
+        </div>
+
+
+        <form id="reviewForm">
+
+            <div class="modal-body">
+
+                <input type="hidden"
+                       id="reviewId">
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Customer Name
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="reviewName"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Location
+                    </label>
+
+                    <input type="text"
+                           class="form-control"
+                           id="reviewLocation"
+                           required>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Rating
+                    </label>
+
+                    <select class="form-select"
+                            id="reviewRating">
+
+                        <option value="5">
+                            5
+                        </option>
+
+                        <option value="4.5">
+                            4.5
+                        </option>
+
+                        <option value="4">
+                            4
+                        </option>
+
+                        <option value="3.5">
+                            3.5
+                        </option>
+
+                        <option value="3">
+                            3
+                        </option>
+
+                        <option value="2">
+                            2
+                        </option>
+
+                        <option value="1">
+                            1
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Review
+                    </label>
+
+                    <textarea class="form-control"
+                              id="reviewComment"
+                              rows="4"
+                              required></textarea>
+
+                </div>
+
+
+                <div class="mb-3">
+
+                    <label class="form-label">
+                        Status
+                    </label>
+
+                    <select class="form-select"
+                            id="reviewStatus">
+
+                        <option value="Published">
+                            Published
+                        </option>
+
+                        <option value="Pending">
+                            Pending
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button type="button"
+                        class="btn btn-secondary"
+                        data-bs-dismiss="modal">
+
+                    Cancel
+
+                </button>
+
+                <button type="submit"
+                        class="btn btn-primary">
+
+                    Save Review
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+```
+
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js">
+</script>
+
+<script src="destinations.js">
+</script>
+
+<script src="packages.js">
+</script>
+
+<script src="gallery.js">
+</script>
+
+<script src="offers.js">
+</script>
+
+<script src="blog.js">
+</script>
+
+<script src="reviews.js">
+</script>
+
+<script>
+
+
+/* ================= LOGIN PROTECTION ================= */
+
+if (
+    localStorage.getItem(
+        "wanderWorldAdminLoggedIn"
+    ) !== "true"
+) {
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+
+/* ================= NAVIGATION ================= */
+
+function showSection(sectionId, clickedLink) {
+
+    document
+        .querySelectorAll(".admin-section")
+        .forEach(section => {
+
+            section.classList.remove("active");
+
+        });
+
+
+    document
+        .getElementById(sectionId)
+        .classList.add("active");
+
+
+    document
+        .querySelectorAll(".admin-sidebar .nav-link")
+        .forEach(link => {
+
+            link.classList.remove("active");
+
+        });
+
+
+    if (clickedLink) {
+
+        clickedLink.classList.add("active");
+
+    }
+
+
+    loadAllData();
+
+}
+
+
+
+/* ================= LOGOUT ================= */
+
+function adminLogout() {
+
+    localStorage.removeItem(
+        "wanderWorldAdminLoggedIn"
+    );
+
+    window.location.href =
+        "admin-login.html";
+
+}
+
+
+
+/* ================= HELPERS ================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+function formatPrice(price) {
+
+    return "₹" +
+        Number(price || 0)
+            .toLocaleString("en-IN");
+
+}
+
+
+function formatAdminDate(date) {
+
+    if (!date) {
+        return "";
+    }
+
+    return new Date(date)
+        .toLocaleDateString(
+            "en-IN",
+            {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            }
+        );
+
+}
+
+
+
+/* ================= DASHBOARD ================= */
+
+function loadDashboard() {
+
+    document.getElementById(
+        "dashboardDestinations"
+    ).textContent =
+        getDestinations().length;
+
+
+    document.getElementById(
+        "dashboardPackages"
+    ).textContent =
+        getPackages().length;
+
+
+    const bookings =
+        JSON.parse(
+            localStorage.getItem(
+                "wanderWorldBookings"
+            ) || "[]"
+        );
+
+
+    document.getElementById(
+        "dashboardBookings"
+    ).textContent =
+        bookings.length;
+
+
+    document.getElementById(
+        "dashboardReviews"
+    ).textContent =
+        getReviews().length;
+
+}
+
+
+
+/* ================= DESTINATIONS ================= */
+
+function loadDestinations() {
+
+    const destinations =
+        getDestinations();
+
+
+    const table =
+        document.getElementById(
+            "destinationsTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    destinations.forEach(destination => {
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>${destination.id}</td>
+
+                <td>
+                    ${escapeHTML(destination.name)}
+                </td>
+
+                <td>
+                    ${escapeHTML(destination.country)}
+                </td>
+
+                <td>
+                    <span class="badge bg-info">
+                        ${escapeHTML(destination.region)}
+                    </span>
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-sm btn-warning"
+                        onclick="editDestination(${destination.id})">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-sm btn-danger"
+                        onclick="removeDestination(${destination.id})">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+function openDestinationModal() {
+
+    document.getElementById(
+        "destinationForm"
+    ).reset();
+
+
+    document.getElementById(
+        "destinationId"
+    ).value = "";
+
+
+    document.getElementById(
+        "destinationModalTitle"
+    ).textContent =
+        "Add Destination";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "destinationModal"
+        )
+    ).show();
+
+}
+
+
+function editDestination(id) {
+
+    const destination =
+        getDestinationById(id);
+
+
+    if (!destination) {
+        return;
+    }
+
+
+    document.getElementById(
+        "destinationId"
+    ).value =
+        destination.id;
+
+
+    document.getElementById(
+        "destinationName"
+    ).value =
+        destination.name;
+
+
+    document.getElementById(
+        "destinationCountry"
+    ).value =
+        destination.country;
+
+
+    document.getElementById(
+        "destinationRegion"
+    ).value =
+        destination.region;
+
+
+    document.getElementById(
+        "destinationModalTitle"
+    ).textContent =
+        "Edit Destination";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "destinationModal"
+        )
+    ).show();
+
+}
+
+
+function removeDestination(id) {
+
+    if (
+        confirm(
+            "Are you sure you want to delete this destination?"
+        )
+    ) {
+
+        deleteDestination(id);
+
+        loadAllData();
+
+    }
+
+}
+
+
+document
+    .getElementById("destinationForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const id =
+                document.getElementById(
+                    "destinationId"
+                ).value;
+
+
+            const destination = {
+
+                id:
+                    id
+                    ? Number(id)
+                    : Date.now(),
+
+                name:
+                    document.getElementById(
+                        "destinationName"
+                    ).value.trim(),
+
+                country:
+                    document.getElementById(
+                        "destinationCountry"
+                    ).value.trim(),
+
+                region:
+                    document.getElementById(
+                        "destinationRegion"
+                    ).value
+
+            };
+
+
+            if (id) {
+
+                updateDestination(
+                    destination
+                );
+
+            }
+            else {
+
+                addDestination(
+                    destination
+                );
+
+            }
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById(
+                        "destinationModal"
+                    )
+                )
+                .hide();
+
+
+            loadAllData();
+
+        }
+    );
+
+
+
+/* ================= PACKAGES ================= */
+
+function loadPackages() {
+
+    const packages =
+        getPackages();
+
+
+    const table =
+        document.getElementById(
+            "packagesTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    packages.forEach(pkg => {
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>${pkg.id}</td>
+
+                <td>
+                    ${escapeHTML(pkg.name)}
+                </td>
+
+                <td>
+                    ${escapeHTML(pkg.destination)}
+                </td>
+
+                <td>
+                    ${formatPrice(pkg.price)}
+                </td>
+
+                <td>
+                    ${escapeHTML(pkg.duration)}
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-sm btn-warning"
+                        onclick="editPackage(${pkg.id})">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-sm btn-danger"
+                        onclick="removePackage(${pkg.id})">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+function openPackageModal() {
+
+    document
+        .getElementById("packageForm")
+        .reset();
+
+
+    document.getElementById(
+        "packageId"
+    ).value = "";
+
+
+    document.getElementById(
+        "packageModalTitle"
+    ).textContent =
+        "Add Package";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "packageModal"
+        )
+    ).show();
+
+}
+
+
+function editPackage(id) {
+
+    const pkg =
+        getPackageById(id);
+
+
+    if (!pkg) {
+        return;
+    }
+
+
+    document.getElementById(
+        "packageId"
+    ).value =
+        pkg.id;
+
+
+    document.getElementById(
+        "packageName"
+    ).value =
+        pkg.name;
+
+
+    document.getElementById(
+        "packageDestination"
+    ).value =
+        pkg.destination;
+
+
+    document.getElementById(
+        "packagePrice"
+    ).value =
+        pkg.price;
+
+
+    document.getElementById(
+        "packageOldPrice"
+    ).value =
+        pkg.oldPrice || "";
+
+
+    document.getElementById(
+        "packageDuration"
+    ).value =
+        pkg.duration;
+
+
+    document.getElementById(
+        "packageRating"
+    ).value =
+        pkg.rating || 5;
+
+
+    document.getElementById(
+        "packageModalTitle"
+    ).textContent =
+        "Edit Package";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "packageModal"
+        )
+    ).show();
+
+}
+
+
+function removePackage(id) {
+
+    if (
+        confirm(
+            "Are you sure you want to delete this package?"
+        )
+    ) {
+
+        deletePackage(id);
+
+        loadAllData();
+
+    }
+
+}
+
+
+document
+    .getElementById("packageForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const id =
+                document.getElementById(
+                    "packageId"
+                ).value;
+
+
+            const packageData = {
+
+                id:
+                    id
+                    ? Number(id)
+                    : Date.now(),
+
+                name:
+                    document.getElementById(
+                        "packageName"
+                    ).value.trim(),
+
+                destination:
+                    document.getElementById(
+                        "packageDestination"
+                    ).value.trim(),
+
+                price:
+                    Number(
+                        document.getElementById(
+                            "packagePrice"
+                        ).value
+                    ),
+
+                oldPrice:
+                    Number(
+                        document.getElementById(
+                            "packageOldPrice"
+                        ).value
+                    ) || 0,
+
+                duration:
+                    document.getElementById(
+                        "packageDuration"
+                    ).value.trim(),
+
+                rating:
+                    Number(
+                        document.getElementById(
+                            "packageRating"
+                        ).value
+                    ) || 5
+
+            };
+
+
+            if (id) {
+
+                updatePackage(
+                    packageData
+                );
+
+            }
+            else {
+
+                addPackage(
+                    packageData
+                );
+
+            }
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById(
+                        "packageModal"
+                    )
+                )
+                .hide();
+
+
+            loadAllData();
+
+        }
+    );
+
+
+
+/* ================= BOOKINGS ================= */
+
+function loadBookings() {
+
+    const bookings =
+        JSON.parse(
+            localStorage.getItem(
+                "wanderWorldBookings"
+            ) || "[]"
+        );
+
+
+    const table =
+        document.getElementById(
+            "bookingsTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    if (bookings.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="7"
+                    class="text-center text-muted">
+
+                    No bookings yet.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    bookings.forEach(booking => {
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${escapeHTML(
+                        String(booking.id)
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        booking.customerName
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        booking.packageName
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        booking.travelDate
+                    )}
+                </td>
+
+                <td>
+                    ${booking.travelers}
+                </td>
+
+                <td>
+                    ${formatPrice(
+                        booking.estimatedTotal
+                    )}
+                </td>
+
+                <td>
+
+                    <span class="badge bg-warning text-dark">
+
+                        ${escapeHTML(
+                            booking.status || "Pending"
+                        )}
+
+                    </span>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+
+/* ================= CUSTOMERS ================= */
+
+function loadCustomers() {
+
+    const bookings =
+        JSON.parse(
+            localStorage.getItem(
+                "wanderWorldBookings"
+            ) || "[]"
+        );
+
+
+    const customers = {};
+
+
+    bookings.forEach(booking => {
+
+        const email =
+            booking.email;
+
+
+        if (!customers[email]) {
+
+            customers[email] = {
+
+                name:
+                    booking.customerName,
+
+                email:
+                    booking.email,
+
+                phone:
+                    booking.phone,
+
+                bookings:
+                    0
+
+            };
+
+        }
+
+
+        customers[email].bookings++;
+
+    });
+
+
+    const table =
+        document.getElementById(
+            "customersTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    Object.values(customers)
+        .forEach(customer => {
+
+            table.innerHTML += `
+
+                <tr>
+
+                    <td>
+                        ${escapeHTML(
+                            customer.name
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            customer.email
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHTML(
+                            customer.phone
+                        )}
+                    </td>
+
+                    <td>
+                        ${customer.bookings}
+                    </td>
+
+                </tr>
+
+            `;
+
+        });
+
+
+    if (
+        Object.keys(customers).length === 0
+    ) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="4"
+                    class="text-center text-muted">
+
+                    No customers yet.
+
+                </td>
+
+            </tr>
+
+        `;
+
+    }
+
+}
+
+
+
+/* ================= GALLERY ================= */
+
+function loadGallery() {
+
+    const images =
+        getGalleryImages();
+
+
+    const container =
+        document.getElementById(
+            "galleryAdminContainer"
+        );
+
+
+    container.innerHTML = "";
+
+
+    images.forEach(image => {
+
+        container.innerHTML += `
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="card admin-card h-100">
+
+                    <img
+                        src="${escapeHTML(image.image)}"
+                        class="card-img-top"
+                        style="height:180px;object-fit:cover;"
+                        onerror="this.src='https://via.placeholder.com/600x400?text=Travel+Image';"
+                    >
+
+
+                    <div class="card-body">
+
+                        <h6>
+                            ${escapeHTML(image.title)}
+                        </h6>
+
+                        <span class="badge bg-info mb-3">
+
+                            ${escapeHTML(
+                                image.category
+                            )}
+
+                        </span>
+
+
+                        <div>
+
+                            <button
+                                class="btn btn-sm btn-warning"
+                                onclick="editGallery(${image.id})">
+
+                                <i class="bi bi-pencil"></i>
+
+                            </button>
+
+
+                            <button
+                                class="btn btn-sm btn-danger"
+                                onclick="removeGallery(${image.id})">
+
+                                <i class="bi bi-trash"></i>
+
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+}
+
+
+function openGalleryModal() {
+
+    document
+        .getElementById("galleryForm")
+        .reset();
+
+
+    document.getElementById(
+        "galleryId"
+    ).value = "";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "galleryModal"
+        )
+    ).show();
+
+}
+
+
+function editGallery(id) {
+
+    const image =
+        getGalleryImageById(id);
+
+
+    if (!image) {
+        return;
+    }
+
+
+    document.getElementById(
+        "galleryId"
+    ).value =
+        image.id;
+
+
+    document.getElementById(
+        "galleryTitle"
+    ).value =
+        image.title;
+
+
+    document.getElementById(
+        "galleryImage"
+    ).value =
+        image.image;
+
+
+    document.getElementById(
+        "galleryCategory"
+    ).value =
+        image.category;
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "galleryModal"
+        )
+    ).show();
+
+}
+
+
+function removeGallery(id) {
+
+    if (
+        confirm(
+            "Delete this gallery image?"
+        )
+    ) {
+
+        deleteGalleryImage(id);
+
+        loadAllData();
+
+    }
+
+}
+
+
+document
+    .getElementById("galleryForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const id =
+                document.getElementById(
+                    "galleryId"
+                ).value;
+
+
+            const image = {
+
+                id:
+                    id
+                    ? Number(id)
+                    : Date.now(),
+
+                title:
+                    document.getElementById(
+                        "galleryTitle"
+                    ).value.trim(),
+
+                image:
+                    document.getElementById(
+                        "galleryImage"
+                    ).value.trim(),
+
+                category:
+                    document.getElementById(
+                        "galleryCategory"
+                    ).value
+
+            };
+
+
+            if (id) {
+
+                updateGalleryImage(
+                    image
+                );
+
+            }
+            else {
+
+                addGalleryImage(
+                    image
+                );
+
+            }
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById(
+                        "galleryModal"
+                    )
+                )
+                .hide();
+
+
+            loadAllData();
+
+        }
+    );
+
+
+
+/* ================= OFFERS ================= */
+
+function loadOffers() {
+
+    const offers =
+        getOffers();
+
+
+    const table =
+        document.getElementById(
+            "offersTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    offers.forEach(offer => {
+
+        const expired =
+            isOfferExpired(
+                offer.validUntil
+            );
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${escapeHTML(
+                        offer.title
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        offer.discount
+                    )}
+                </td>
+
+                <td>
+                    ${formatAdminDate(
+                        offer.validUntil
+                    )}
+                </td>
+
+                <td>
+
+                    <span class="badge ${
+                        expired
+                        ? "bg-danger"
+                        : "bg-success"
+                    }">
+
+                        ${
+                            expired
+                            ? "Expired"
+                            : "Active"
+                        }
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-sm btn-warning"
+                        onclick="editOffer(${offer.id})">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-sm btn-danger"
+                        onclick="removeOffer(${offer.id})">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+function openOfferModal() {
+
+    document
+        .getElementById("offerForm")
+        .reset();
+
+
+    document.getElementById(
+        "offerId"
+    ).value = "";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "offerModal"
+        )
+    ).show();
+
+}
+
+
+function editOffer(id) {
+
+    const offer =
+        getOfferById(id);
+
+
+    if (!offer) {
+        return;
+    }
+
+
+    document.getElementById(
+        "offerId"
+    ).value =
+        offer.id;
+
+
+    document.getElementById(
+        "offerTitle"
+    ).value =
+        offer.title;
+
+
+    document.getElementById(
+        "offerDescription"
+    ).value =
+        offer.description;
+
+
+    document.getElementById(
+        "offerDiscount"
+    ).value =
+        offer.discount;
+
+
+    document.getElementById(
+        "offerValidUntil"
+    ).value =
+        offer.validUntil;
+
+
+    document.getElementById(
+        "offerImage"
+    ).value =
+        offer.image;
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "offerModal"
+        )
+    ).show();
+
+}
+
+
+function removeOffer(id) {
+
+    if (
+        confirm(
+            "Delete this offer?"
+        )
+    ) {
+
+        deleteOffer(id);
+
+        loadAllData();
+
+    }
+
+}
+
+
+document
+    .getElementById("offerForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const id =
+                document.getElementById(
+                    "offerId"
+                ).value;
+
+
+            const offer = {
+
+                id:
+                    id
+                    ? Number(id)
+                    : Date.now(),
+
+                title:
+                    document.getElementById(
+                        "offerTitle"
+                    ).value.trim(),
+
+                description:
+                    document.getElementById(
+                        "offerDescription"
+                    ).value.trim(),
+
+                discount:
+                    document.getElementById(
+                        "offerDiscount"
+                    ).value.trim(),
+
+                validUntil:
+                    document.getElementById(
+                        "offerValidUntil"
+                    ).value,
+
+                image:
+                    document.getElementById(
+                        "offerImage"
+                    ).value.trim(),
+
+                status:
+                    "Active"
+
+            };
+
+
+            if (id) {
+
+                updateOffer(
+                    offer
+                );
+
+            }
+            else {
+
+                addOffer(
+                    offer
+                );
+
+            }
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById(
+                        "offerModal"
+                    )
+                )
+                .hide();
+
+
+            loadAllData();
+
+        }
+    );
+
+
+
+/* ================= BLOG ================= */
+
+function loadBlogs() {
+
+    const blogs =
+        getBlogs();
+
+
+    const table =
+        document.getElementById(
+            "blogsTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    blogs.forEach(blog => {
+
+        const statusClass =
+            blog.status === "Published"
+            ? "bg-success"
+            : "bg-secondary";
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${blog.id}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        blog.title
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        blog.category
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        blog.author
+                    )}
+                </td>
+
+                <td>
+                    ${formatAdminDate(
+                        blog.date
+                    )}
+                </td>
+
+                <td>
+
+                    <span class="badge ${statusClass}">
+
+                        ${escapeHTML(
+                            blog.status
+                        )}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-sm btn-warning"
+                        onclick="editBlog(${blog.id})">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-sm btn-danger"
+                        onclick="removeBlog(${blog.id})">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+function openBlogModal() {
+
+    document
+        .getElementById("blogForm")
+        .reset();
+
+
+    document.getElementById(
+        "blogId"
+    ).value = "";
+
+
+    document.getElementById(
+        "blogAuthor"
+    ).value =
+        "WanderWorld";
+
+
+    document.getElementById(
+        "blogDate"
+    ).value =
+        new Date()
+            .toISOString()
+            .split("T")[0];
+
+
+    document.getElementById(
+        "blogModalTitle"
+    ).textContent =
+        "Add Blog";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "blogModal"
+        )
+    ).show();
+
+}
+
+
+function editBlog(id) {
+
+    const blog =
+        getBlogById(id);
+
+
+    if (!blog) {
+        return;
+    }
+
+
+    document.getElementById(
+        "blogId"
+    ).value =
+        blog.id;
+
+
+    document.getElementById(
+        "blogTitle"
+    ).value =
+        blog.title;
+
+
+    document.getElementById(
+        "blogCategory"
+    ).value =
+        blog.category;
+
+
+    document.getElementById(
+        "blogAuthor"
+    ).value =
+        blog.author;
+
+
+    document.getElementById(
+        "blogDate"
+    ).value =
+        blog.date;
+
+
+    document.getElementById(
+        "blogImage"
+    ).value =
+        blog.image;
+
+
+    document.getElementById(
+        "blogExcerpt"
+    ).value =
+        blog.excerpt;
+
+
+    document.getElementById(
+        "blogContent"
+    ).value =
+        blog.content;
+
+
+    document.getElementById(
+        "blogStatus"
+    ).value =
+        blog.status;
+
+
+    document.getElementById(
+        "blogModalTitle"
+    ).textContent =
+        "Edit Blog";
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "blogModal"
+        )
+    ).show();
+
+}
+
+
+function removeBlog(id) {
+
+    if (
+        confirm(
+            "Delete this blog post?"
+        )
+    ) {
+
+        deleteBlog(id);
+
+        loadAllData();
+
+    }
+
+}
+
+
+document
+    .getElementById("blogForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const id =
+                document.getElementById(
+                    "blogId"
+                ).value;
+
+
+            const blog = {
+
+                id:
+                    id
+                    ? Number(id)
+                    : Date.now(),
+
+                title:
+                    document.getElementById(
+                        "blogTitle"
+                    ).value.trim(),
+
+                category:
+                    document.getElementById(
+                        "blogCategory"
+                    ).value,
+
+                author:
+                    document.getElementById(
+                        "blogAuthor"
+                    ).value.trim(),
+
+                date:
+                    document.getElementById(
+                        "blogDate"
+                    ).value,
+
+                image:
+                    document.getElementById(
+                        "blogImage"
+                    ).value.trim(),
+
+                excerpt:
+                    document.getElementById(
+                        "blogExcerpt"
+                    ).value.trim(),
+
+                content:
+                    document.getElementById(
+                        "blogContent"
+                    ).value.trim(),
+
+                status:
+                    document.getElementById(
+                        "blogStatus"
+                    ).value
+
+            };
+
+
+            if (id) {
+
+                updateBlog(
+                    blog
+                );
+
+            }
+            else {
+
+                addBlog(
+                    blog
+                );
+
+            }
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById(
+                        "blogModal"
+                    )
+                )
+                .hide();
+
+
+            loadAllData();
+
+        }
+    );
+
+
+
+/* ================= REVIEWS ================= */
+
+function loadReviews() {
+
+    const reviews =
+        getReviews();
+
+
+    const table =
+        document.getElementById(
+            "reviewsTable"
+        );
+
+
+    table.innerHTML = "";
+
+
+    if (reviews.length === 0) {
+
+        table.innerHTML = `
+
+            <tr>
+
+                <td colspan="8"
+                    class="text-center text-muted">
+
+                    No reviews found.
+
+                </td>
+
+            </tr>
+
+        `;
+
+        return;
+
+    }
+
+
+    reviews.forEach(review => {
+
+        const statusClass =
+            review.status === "Published"
+            ? "bg-success"
+            : "bg-warning text-dark";
+
+
+        table.innerHTML += `
+
+            <tr>
+
+                <td>
+                    ${review.id}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        review.name
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        review.location
+                    )}
+                </td>
+
+                <td>
+
+                    <span class="text-warning">
+
+                        ${createStars(
+                            review.rating
+                        )}
+
+                    </span>
+
+                    <small>
+                        ${review.rating}
+                    </small>
+
+                </td>
+
+                <td style="max-width:250px;">
+
+                    ${escapeHTML(
+                        review.comment
+                    )}
+
+                </td>
+
+                <td>
+                    ${formatAdminDate(
+                        review.date
+                    )}
+                </td>
+
+                <td>
+
+                    <span class="badge ${statusClass}">
+
+                        ${escapeHTML(
+                            review.status
+                        )}
+
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <button
+                        class="btn btn-sm btn-warning"
+                        onclick="editReview(${review.id})">
+
+                        <i class="bi bi-pencil"></i>
+
+                    </button>
+
+
+                    <button
+                        class="btn btn-sm btn-danger"
+                        onclick="removeReview(${review.id})">
+
+                        <i class="bi bi-trash"></i>
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+        `;
+
+    });
+
+}
+
+
+function createStars(rating) {
+
+    let stars = "";
+
+    const fullStars =
+        Math.floor(Number(rating));
+
+
+    for (
+        let i = 1;
+        i <= 5;
+        i++
+    ) {
+
+        if (i <= fullStars) {
+
+            stars += "★";
+
+        }
+        else {
+
+            stars += "☆";
+
+        }
+
+    }
+
+
+    return stars;
+
+}
+
+
+function editReview(id) {
+
+    const review =
+        getReviewById(id);
+
+
+    if (!review) {
+        return;
+    }
+
+
+    document.getElementById(
+        "reviewId"
+    ).value =
+        review.id;
+
+
+    document.getElementById(
+        "reviewName"
+    ).value =
+        review.name;
+
+
+    document.getElementById(
+        "reviewLocation"
+    ).value =
+        review.location;
+
+
+    document.getElementById(
+        "reviewRating"
+    ).value =
+        review.rating;
+
+
+    document.getElementById(
+        "reviewComment"
+    ).value =
+        review.comment;
+
+
+    document.getElementById(
+        "reviewStatus"
+    ).value =
+        review.status;
+
+
+    new bootstrap.Modal(
+        document.getElementById(
+            "reviewModal"
+        )
+    ).show();
+
+}
+
+
+function removeReview(id) {
+
+    if (
+        confirm(
+            "Delete this review?"
+        )
+    ) {
+
+        deleteReview(id);
+
+        loadAllData();
+
+    }
+
+}
+
+
+document
+    .getElementById("reviewForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const review = {
+
+                id:
+                    Number(
+                        document.getElementById(
+                            "reviewId"
+                        ).value
+                    ),
+
+                name:
+                    document.getElementById(
+                        "reviewName"
+                    ).value.trim(),
+
+                location:
+                    document.getElementById(
+                        "reviewLocation"
+                    ).value.trim(),
+
+                rating:
+                    Number(
+                        document.getElementById(
+                            "reviewRating"
+                        ).value
+                    ),
+
+                comment:
+                    document.getElementById(
+                        "reviewComment"
+                    ).value.trim(),
+
+                status:
+                    document.getElementById(
+                        "reviewStatus"
+                    ).value,
+
+                date:
+                    getReviewById(
+                        document.getElementById(
+                            "reviewId"
+                        ).value
+                    ).date
+
+            };
+
+
+            updateReview(review);
+
+
+            bootstrap.Modal
+                .getInstance(
+                    document.getElementById(
+                        "reviewModal"
+                    )
+                )
+                .hide();
+
+
+            loadAllData();
+
+        }
+    );
+
+
+
+/* ================= LOAD EVERYTHING ================= */
+
+function loadAllData() {
+
+    loadDashboard();
+
+    loadDestinations();
+
+    loadPackages();
+
+    loadBookings();
+
+    loadCustomers();
+
+    loadGallery();
+
+    loadOffers();
+
+    loadBlogs();
+
+    loadReviews();
+
+}
+
+
+loadAllData();
+
+</script>
+
+</body>
+
+</html>

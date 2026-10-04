@@ -1,0 +1,599 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Package Details - WanderWorld</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg travel-navbar navbar-dark">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">
+            <i class="bi bi-airplane"></i> WanderWorld
+        </a>
+        <button class="navbar-toggler" type="button"
+                data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="mainNavbar">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="destinations.html">Destinations</a></li>
+                <li class="nav-item"><a class="nav-link active" href="packages.html">Tour Packages</a></li>
+                <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                <li class="nav-item"><a class="nav-link" href="offers.html">Offers</a></li>
+                <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- PAGE HERO -->
+<section class="page-hero">
+    <div class="container text-center">
+        <h1 class="fw-bold">Tour Package Details</h1>
+        <p>Discover your next adventure with WanderWorld.</p>
+    </div>
+</section>
+
+<!-- PACKAGE CONTENT -->
+<section class="section-padding">
+    <div class="container">
+
+        <div id="packageNotFound" class="text-center py-5 d-none">
+            <i class="bi bi-map display-4 text-muted"></i>
+            <h2 class="mt-3">Package Not Found</h2>
+            <p class="text-muted">This package may have been removed or the link is invalid.</p>
+            <a href="packages.html" class="btn btn-travel">Browse Packages</a>
+        </div>
+
+        <div id="packageContent" class="d-none">
+
+            <div class="row g-4">
+
+                <!-- LEFT: PACKAGE DETAILS -->
+                <div class="col-lg-8">
+
+                    <img id="packageImage"
+                         class="w-100 rounded-4 mb-4"
+                         style="height: 400px; object-fit: cover;"
+                         alt="Tour package">
+
+                    <div class="d-flex flex-wrap justify-content-between align-items-center gap-2">
+                        <span id="packageDestination" class="badge bg-primary"></span>
+                        <div class="rating">
+                            <i class="bi bi-star-fill"></i>
+                            <strong id="packageRating"></strong>
+                            <span id="packageReviews" class="text-muted"></span>
+                        </div>
+                    </div>
+
+                    <h2 id="packageName" class="fw-bold mt-3"></h2>
+                    <p id="packageDescription" class="text-muted"></p>
+
+                    <!-- PACKAGE INFORMATION -->
+                    <div class="row g-3 my-4">
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="feature-box text-center h-100">
+                                <i class="bi bi-calendar-week"></i>
+                                <h6 class="mt-2">Duration</h6>
+                                <p id="packageDuration" class="mb-0"></p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="feature-box text-center h-100">
+                                <i class="bi bi-people"></i>
+                                <h6 class="mt-2">Group Size</h6>
+                                <p id="packagePeople" class="mb-0"></p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="feature-box text-center h-100">
+                                <i class="bi bi-geo-alt"></i>
+                                <h6 class="mt-2">Destination</h6>
+                                <p id="packageCountry" class="mb-0"></p>
+                            </div>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3">
+                            <div class="feature-box text-center h-100">
+                                <i class="bi bi-globe"></i>
+                                <h6 class="mt-2">Experience</h6>
+                                <p class="mb-0">Guided Tour</p>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- ITINERARY -->
+                    <h3 class="fw-bold mt-5 mb-3">Trip Overview</h3>
+                    <p>
+                        Your package includes a planned itinerary to help you
+                        explore the destination comfortably. The exact daily
+                        schedule will be confirmed by our travel team after booking.
+                    </p>
+
+                    <div class="accordion mb-4" id="itineraryAccordion">
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#day1">
+                                    <strong>Day 1 — Arrival</strong>
+                                </button>
+                            </h2>
+                            <div id="day1" class="accordion-collapse collapse show"
+                                 data-bs-parent="#itineraryAccordion">
+                                <div class="accordion-body">
+                                    Arrive at your destination, check in to your
+                                    accommodation and enjoy some free time.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#day2">
+                                    <strong>Day 2 — Local Exploration</strong>
+                                </button>
+                            </h2>
+                            <div id="day2" class="accordion-collapse collapse"
+                                 data-bs-parent="#itineraryAccordion">
+                                <div class="accordion-body">
+                                    Explore popular attractions and enjoy local
+                                    experiences with time for photographs.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#day3">
+                                    <strong>Day 3 — Adventure and Activities</strong>
+                                </button>
+                            </h2>
+                            <div id="day3" class="accordion-collapse collapse"
+                                 data-bs-parent="#itineraryAccordion">
+                                <div class="accordion-body">
+                                    Enjoy destination activities or sightseeing.
+                                    Activities depend on the selected package and season.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#day4">
+                                    <strong>Day 4 — Leisure and Sightseeing</strong>
+                                </button>
+                            </h2>
+                            <div id="day4" class="accordion-collapse collapse"
+                                 data-bs-parent="#itineraryAccordion">
+                                <div class="accordion-body">
+                                    Spend time exploring at your own pace or join
+                                    an optional activity recommended by your guide.
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header">
+                                <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse"
+                                        data-bs-target="#day5">
+                                    <strong>Final Day — Departure</strong>
+                                </button>
+                            </h2>
+                            <div id="day5" class="accordion-collapse collapse"
+                                 data-bs-parent="#itineraryAccordion">
+                                <div class="accordion-body">
+                                    Check out and depart according to your confirmed
+                                    travel schedule. Shorter or longer packages may
+                                    have a different itinerary.
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- INCLUSIONS -->
+                    <h3 class="fw-bold mt-5 mb-3">Package Information</h3>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="border rounded-3 p-3 h-100">
+                                <h5 class="text-success">
+                                    <i class="bi bi-check-circle"></i> Typical Inclusions
+                                </h5>
+                                <ul class="mb-0">
+                                    <li>Accommodation as per package</li>
+                                    <li>Planned sightseeing</li>
+                                    <li>Travel assistance</li>
+                                    <li>Selected activities, if listed</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="border rounded-3 p-3 h-100">
+                                <h5 class="text-danger">
+                                    <i class="bi bi-x-circle"></i> Usually Excluded
+                                </h5>
+                                <ul class="mb-0">
+                                    <li>Personal expenses</li>
+                                    <li>Optional activities</li>
+                                    <li>Unlisted meals</li>
+                                    <li>Expenses not specified in the package</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <p class="small text-muted mt-3">
+                        Final inclusions, exclusions and itinerary depend on the
+                        confirmed package. Please verify them before payment.
+                    </p>
+
+                </div>
+
+                <!-- RIGHT: BOOKING CARD -->
+                <div class="col-lg-4">
+
+                    <div class="card border-0 shadow-sm sticky-top"
+                         style="top: 20px;">
+
+                        <div class="card-body p-4">
+
+                            <p class="text-muted mb-1">Package price</p>
+
+                            <h3 id="packagePrice" class="fw-bold text-primary"></h3>
+
+                            <p class="text-muted small">per person</p>
+
+                            <hr>
+
+                            <a href="#booking" class="btn btn-travel w-100 mb-3">
+                                <i class="bi bi-calendar-check"></i> Book This Package
+                            </a>
+
+                            <p class="small text-muted mb-0">
+                                <i class="bi bi-shield-check"></i>
+                                Booking requests are saved locally in this demo.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- BOOKING FORM -->
+            <div id="booking" class="card border-0 shadow-sm mt-5">
+
+                <div class="card-body p-4 p-md-5">
+
+                    <h3 class="fw-bold">Request a Booking</h3>
+                    <p class="text-muted">
+                        Enter your details. Our travel team can confirm availability
+                        and final pricing after reviewing your request.
+                    </p>
+
+                    <div id="bookingSuccess"
+                         class="alert alert-success d-none"
+                         role="alert">
+                    </div>
+
+                    <form id="bookingForm">
+
+                        <div class="row g-3">
+
+                            <div class="col-md-6">
+                                <label for="customerName" class="form-label">
+                                    Full Name
+                                </label>
+                                <input type="text" id="customerName"
+                                       class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="customerEmail" class="form-label">
+                                    Email Address
+                                </label>
+                                <input type="email" id="customerEmail"
+                                       class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="customerPhone" class="form-label">
+                                    Phone Number
+                                </label>
+                                <input type="tel" id="customerPhone"
+                                       class="form-control"
+                                       pattern="[0-9+() -]{8,20}"
+                                       title="Enter a valid phone number"
+                                       required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="travelers" class="form-label">
+                                    Number of Travelers
+                                </label>
+                                <input type="number" id="travelers"
+                                       class="form-control"
+                                       min="1" max="10" value="2" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="travelDate" class="form-label">
+                                    Travel Date
+                                </label>
+                                <input type="date" id="travelDate"
+                                       class="form-control" required>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="roomPreference" class="form-label">
+                                    Room Preference
+                                </label>
+                                <select id="roomPreference" class="form-select" required>
+                                    <option value="">Choose room type</option>
+                                    <option value="Standard">Standard</option>
+                                    <option value="Deluxe">Deluxe</option>
+                                    <option value="Family">Family</option>
+                                </select>
+                            </div>
+
+                            <div class="col-12">
+                                <label for="specialRequirements" class="form-label">
+                                    Special Requirements (Optional)
+                                </label>
+                                <textarea id="specialRequirements"
+                                          class="form-control" rows="3"
+                                          placeholder="Any preferences or questions?"></textarea>
+                            </div>
+
+                            <div class="col-12">
+                                <div class="border rounded-3 p-3">
+                                    <div class="d-flex justify-content-between">
+                                        <span>Price per person</span>
+                                        <strong id="bookingUnitPrice"></strong>
+                                    </div>
+                                    <div class="d-flex justify-content-between mt-2">
+                                        <span>Number of travelers</span>
+                                        <strong id="bookingTravelerCount">2</strong>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between">
+                                        <span>Total estimated price</span>
+                                        <strong id="bookingTotal" class="text-primary"></strong>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-travel">
+                                    <i class="bi bi-send"></i> Submit Booking Request
+                                </button>
+                                <a href="packages.html" class="btn btn-outline-secondary ms-2">
+                                    Back to Packages
+                                </a>
+                            </div>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="travel-footer">
+    <div class="container">
+        <div class="row g-4">
+
+            <div class="col-md-4">
+                <h4 class="fw-bold"><i class="bi bi-airplane"></i> WanderWorld</h4>
+                <p>Your trusted travel partner for unforgettable journeys and amazing experiences.</p>
+            </div>
+
+            <div class="col-md-2">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="destinations.html">Destinations</a></li>
+                    <li><a href="packages.html">Packages</a></li>
+                    <li><a href="about.html">About</a></li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h5>Services</h5>
+                <ul class="list-unstyled">
+                    <li>Flight Booking</li>
+                    <li>Hotel Booking</li>
+                    <li>Tour Packages</li>
+                    <li>Travel Insurance</li>
+                </ul>
+            </div>
+
+            <div class="col-md-3">
+                <h5>Contact</h5>
+                <p><i class="bi bi-telephone"></i> +91 98765 43210</p>
+                <p><i class="bi bi-envelope"></i> info@wanderworld.com</p>
+                <p><i class="bi bi-geo-alt"></i> Hyderabad, India</p>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom text-center mt-4 pt-3">
+            <p class="mb-0">© 2026 WanderWorld. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+<script src="packages.js"></script>
+
+<script>
+let selectedPackage = null;
+
+const packageContent = document.getElementById("packageContent");
+const packageNotFound = document.getElementById("packageNotFound");
+const bookingForm = document.getElementById("bookingForm");
+const travelersInput = document.getElementById("travelers");
+const bookingSuccess = document.getElementById("bookingSuccess");
+
+function formatPrice(price) {
+    return "₹" + Number(price).toLocaleString("en-IN");
+}
+
+function displayPackage(item) {
+    document.getElementById("packageImage").src = item.image;
+    document.getElementById("packageImage").alt = item.name;
+    document.getElementById("packageDestination").textContent = item.destination;
+    document.getElementById("packageRating").textContent = item.rating;
+    document.getElementById("packageReviews").textContent =
+        ` (${item.reviews} reviews)`;
+    document.getElementById("packageName").textContent = item.name;
+    document.getElementById("packageDescription").textContent = item.description;
+    document.getElementById("packageDuration").textContent =
+        `${item.duration} Days / ${item.nights} Nights`;
+    document.getElementById("packagePeople").textContent =
+        `${item.persons} People`;
+    document.getElementById("packageCountry").textContent =
+        `${item.destination}, ${item.country}`;
+    document.getElementById("packagePrice").textContent =
+        formatPrice(item.price);
+    document.getElementById("bookingUnitPrice").textContent =
+        formatPrice(item.price);
+
+    packageContent.classList.remove("d-none");
+    packageNotFound.classList.add("d-none");
+
+    updateBookingTotal();
+}
+
+function updateBookingTotal() {
+    if (!selectedPackage) return;
+
+    const numberOfTravelers = Number(travelersInput.value) || 1;
+
+    document.getElementById("bookingTravelerCount").textContent =
+        numberOfTravelers;
+
+    document.getElementById("bookingTotal").textContent =
+        formatPrice(selectedPackage.price * numberOfTravelers);
+}
+
+travelersInput.addEventListener("input", updateBookingTotal);
+
+// Load the package ID from the URL.
+document.addEventListener("DOMContentLoaded", function() {
+    const params = new URLSearchParams(window.location.search);
+    const packageId = params.get("id");
+
+    selectedPackage = packageId ? getPackageById(packageId) : null;
+
+    if (!selectedPackage) {
+        packageNotFound.classList.remove("d-none");
+        packageContent.classList.add("d-none");
+        return;
+    }
+
+    displayPackage(selectedPackage);
+
+    // Do not allow a travel date in the past.
+    const today = new Date();
+    const localToday = new Date(
+        today.getTime() - today.getTimezoneOffset() * 60000
+    ).toISOString().split("T")[0];
+
+    document.getElementById("travelDate").min = localToday;
+});
+
+// Save a booking request in localStorage.
+bookingForm.addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    if (!selectedPackage) return;
+
+    const numberOfTravelers = Number(travelersInput.value);
+
+    if (numberOfTravelers < 1 || numberOfTravelers > 10) {
+        alert("Please select between 1 and 10 travelers.");
+        return;
+    }
+
+    const booking = {
+        id: Date.now(),
+        packageId: selectedPackage.id,
+        packageName: selectedPackage.name,
+        destination: selectedPackage.destination,
+        customerName: document.getElementById("customerName").value.trim(),
+        email: document.getElementById("customerEmail").value.trim(),
+        phone: document.getElementById("customerPhone").value.trim(),
+        travelers: numberOfTravelers,
+        travelDate: document.getElementById("travelDate").value,
+        roomPreference: document.getElementById("roomPreference").value,
+        specialRequirements:
+            document.getElementById("specialRequirements").value.trim(),
+        estimatedTotal: selectedPackage.price * numberOfTravelers,
+        status: "Pending",
+        createdAt: new Date().toISOString()
+    };
+
+    const bookings = JSON.parse(
+        localStorage.getItem("wanderWorldBookings") || "[]"
+    );
+
+    bookings.push(booking);
+
+    localStorage.setItem("wanderWorldBookings", JSON.stringify(bookings));
+
+    bookingSuccess.textContent =
+        `Booking request saved! Reference: WW${booking.id}. ` +
+        `Estimated total: ${formatPrice(booking.estimatedTotal)}. ` +
+        `This is a demo request, not a confirmed reservation.`;
+
+    bookingSuccess.classList.remove("d-none");
+    bookingForm.reset();
+    travelersInput.value = 2;
+    updateBookingTotal();
+
+    bookingSuccess.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+});
+</script>
+
+</body>
+</html>
+```

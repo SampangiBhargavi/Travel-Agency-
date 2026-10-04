@@ -1,0 +1,778 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Destinations - WanderWorld</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg travel-navbar navbar-dark">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="index.html">
+
+            <i class="bi bi-airplane"></i>
+            WanderWorld
+
+        </a>
+
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#mainNavbar">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+
+        <div class="collapse navbar-collapse" id="mainNavbar">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="index.html">
+                        Home
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link active" href="destinations.html">
+                        Destinations
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="packages.html">
+                        Tour Packages
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="services.html">
+                        Services
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="gallery.html">
+                        Gallery
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="offers.html">
+                        Offers
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="blog.html">
+                        Blog
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">
+                        Contact
+                    </a>
+                </li>
+
+                <li class="nav-item ms-lg-2">
+
+                    <a class="nav-link" href="login.html">
+
+                        <i class="bi bi-person"></i>
+                        Login
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+
+<!-- ================= PAGE HERO ================= -->
+
+<section class="page-hero">
+
+    <div class="container text-center">
+
+        <h1 class="fw-bold">
+            Explore Our Destinations
+        </h1>
+
+        <p>
+            Discover amazing places and create unforgettable memories.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= DESTINATIONS ================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+
+        <!-- SEARCH AND FILTER -->
+
+        <div class="row justify-content-center mb-5">
+
+            <div class="col-lg-9">
+
+                <div class="card border-0 shadow-sm">
+
+                    <div class="card-body p-4">
+
+                        <div class="row g-3">
+
+
+                            <!-- SEARCH -->
+
+                            <div class="col-md-7">
+
+                                <label class="form-label fw-semibold">
+                                    Search Destination
+                                </label>
+
+                                <div class="input-group">
+
+                                    <span class="input-group-text">
+
+                                        <i class="bi bi-search"></i>
+
+                                    </span>
+
+                                    <input type="text"
+                                           id="searchDestination"
+                                           class="form-control"
+                                           placeholder="Search by destination, country or region">
+
+                                </div>
+
+                            </div>
+
+
+
+                            <!-- FILTER -->
+
+                            <div class="col-md-5">
+
+                                <label class="form-label fw-semibold">
+                                    Destination Type
+                                </label>
+
+                                <select id="regionFilter"
+                                        class="form-select">
+
+                                    <option value="All">
+                                        All Destinations
+                                    </option>
+
+                                    <option value="Beach">
+                                        Beach
+                                    </option>
+
+                                    <option value="Mountain">
+                                        Mountain
+                                    </option>
+
+                                    <option value="Nature">
+                                        Nature
+                                    </option>
+
+                                    <option value="International">
+                                        International
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- RESULT COUNT -->
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+
+            <h3 class="fw-bold mb-0">
+                Popular Destinations
+            </h3>
+
+            <span id="destinationCount"
+                  class="badge bg-primary">
+
+                0 Destinations
+
+            </span>
+
+        </div>
+
+
+
+        <!-- DESTINATION CARDS -->
+
+        <div class="row g-4"
+             id="destinationContainer">
+
+        </div>
+
+
+
+        <!-- NO RESULTS -->
+
+        <div id="noDestinations"
+             class="text-center py-5 d-none">
+
+            <i class="bi bi-geo-alt display-4 text-muted"></i>
+
+            <h4 class="mt-3">
+                No destinations found
+            </h4>
+
+            <p class="text-muted">
+                Try a different destination or category.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= WHY CHOOSE US ================= -->
+
+<section class="section-padding bg-light">
+
+    <div class="container">
+
+        <div class="text-center mb-5">
+
+            <h2 class="section-title">
+                Travel With Confidence
+            </h2>
+
+            <p class="text-muted">
+                Everything you need for a memorable journey.
+            </p>
+
+        </div>
+
+
+        <div class="row g-4">
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-box text-center">
+
+                    <i class="bi bi-shield-check"></i>
+
+                    <h5>
+                        Safe Travel
+                    </h5>
+
+                    <p>
+                        Your safety and comfort are our top priorities.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-box text-center">
+
+                    <i class="bi bi-currency-rupee"></i>
+
+                    <h5>
+                        Best Prices
+                    </h5>
+
+                    <p>
+                        Enjoy competitive prices and great travel deals.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-box text-center">
+
+                    <i class="bi bi-person-check"></i>
+
+                    <h5>
+                        Expert Guides
+                    </h5>
+
+                    <p>
+                        Travel with experienced and knowledgeable guides.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="col-md-6 col-lg-3">
+
+                <div class="feature-box text-center">
+
+                    <i class="bi bi-headset"></i>
+
+                    <h5>
+                        24/7 Support
+                    </h5>
+
+                    <p>
+                        Our travel team is always available to help you.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= CTA ================= -->
+
+<section class="section-padding">
+
+    <div class="container">
+
+        <div class="offer-section text-center">
+
+            <h2 class="fw-bold">
+                Ready For Your Next Adventure?
+            </h2>
+
+            <p class="mb-4">
+                Explore our tour packages and start planning your dream trip.
+            </p>
+
+            <a href="packages.html"
+               class="btn btn-light">
+
+                <i class="bi bi-map"></i>
+                View Tour Packages
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="travel-footer">
+
+    <div class="container">
+
+        <div class="row g-4">
+
+
+            <div class="col-md-4">
+
+                <h4 class="fw-bold">
+
+                    <i class="bi bi-airplane"></i>
+                    WanderWorld
+
+                </h4>
+
+                <p>
+                    Your trusted travel partner for unforgettable
+                    journeys and amazing experiences.
+                </p>
+
+            </div>
+
+
+
+            <div class="col-md-2">
+
+                <h5>
+                    Quick Links
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li>
+                        <a href="index.html">Home</a>
+                    </li>
+
+                    <li>
+                        <a href="destinations.html">Destinations</a>
+                    </li>
+
+                    <li>
+                        <a href="packages.html">Packages</a>
+                    </li>
+
+                    <li>
+                        <a href="about.html">About</a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+
+                <h5>
+                    Services
+                </h5>
+
+                <ul class="list-unstyled">
+
+                    <li>Flight Booking</li>
+                    <li>Hotel Booking</li>
+                    <li>Tour Packages</li>
+                    <li>Travel Insurance</li>
+
+                </ul>
+
+            </div>
+
+
+
+            <div class="col-md-3">
+
+                <h5>
+                    Contact
+                </h5>
+
+                <p>
+                    <i class="bi bi-telephone"></i>
+                    +91 98765 43210
+                </p>
+
+                <p>
+                    <i class="bi bi-envelope"></i>
+                    info@wanderworld.com
+                </p>
+
+                <p>
+                    <i class="bi bi-geo-alt"></i>
+                    Hyderabad, India
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="footer-bottom text-center mt-4 pt-3">
+
+            <p class="mb-0">
+                © 2026 WanderWorld. All Rights Reserved.
+            </p>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+
+<!-- ================= JAVASCRIPT ================= -->
+
+<script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+<script src="destinations.js"></script>
+
+
+<script>
+
+
+// ============================================
+// DESTINATION PAGE
+// ============================================
+
+
+const destinationContainer =
+    document.getElementById("destinationContainer");
+
+
+const searchInput =
+    document.getElementById("searchDestination");
+
+
+const regionFilter =
+    document.getElementById("regionFilter");
+
+
+const destinationCount =
+    document.getElementById("destinationCount");
+
+
+const noDestinations =
+    document.getElementById("noDestinations");
+
+
+
+// ============================================
+// DISPLAY DESTINATIONS
+// ============================================
+
+function displayDestinations(destinationList) {
+
+
+    destinationContainer.innerHTML = "";
+
+
+    destinationCount.innerText =
+        destinationList.length +
+        (destinationList.length === 1
+            ? " Destination"
+            : " Destinations");
+
+
+    if (destinationList.length === 0) {
+
+        noDestinations.classList.remove("d-none");
+
+        return;
+
+    }
+
+
+    noDestinations.classList.add("d-none");
+
+
+
+    destinationList.forEach(destination => {
+
+
+        const card = document.createElement("div");
+
+        card.className =
+            "col-md-6 col-lg-4";
+
+
+        card.innerHTML = `
+
+            <div class="destination-card h-100">
+
+                <img src="${destination.image}"
+                     alt="${destination.name}"
+                     class="w-100">
+
+                <div class="p-4">
+
+                    <span class="badge bg-primary mb-2">
+
+                        ${destination.region}
+
+                    </span>
+
+
+                    <h4 class="fw-bold">
+
+                        ${destination.name}
+
+                    </h4>
+
+
+                    <p class="text-muted mb-2">
+
+                        <i class="bi bi-geo-alt"></i>
+
+                        ${destination.country}
+
+                    </p>
+
+
+                    <div class="rating mb-3">
+
+                        <i class="bi bi-star-fill"></i>
+
+                        <strong>
+                            ${destination.rating}
+                        </strong>
+
+                        <span class="text-muted">
+
+                            (${destination.reviews} reviews)
+
+                        </span>
+
+                    </div>
+
+
+                    <p>
+
+                        ${destination.description}
+
+                    </p>
+
+
+                    <a href="packages.html?destination=${encodeURIComponent(destination.name)}"
+                       class="btn btn-travel">
+
+                        View Packages
+
+                        <i class="bi bi-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        `;
+
+
+        destinationContainer.appendChild(card);
+
+    });
+
+}
+
+
+
+// ============================================
+// APPLY FILTERS
+// ============================================
+
+function applyFilters() {
+
+
+    const searchText =
+        searchInput.value;
+
+
+    const selectedRegion =
+        regionFilter.value;
+
+
+    let filteredDestinations =
+        searchDestinations(searchText);
+
+
+    if (selectedRegion !== "All") {
+
+        filteredDestinations =
+            filteredDestinations.filter(
+                destination =>
+                    destination.region === selectedRegion
+            );
+
+    }
+
+
+    displayDestinations(filteredDestinations);
+
+}
+
+
+
+// ============================================
+// SEARCH EVENT
+// ============================================
+
+searchInput.addEventListener(
+    "input",
+    applyFilters
+);
+
+
+
+// ============================================
+// FILTER EVENT
+// ============================================
+
+regionFilter.addEventListener(
+    "change",
+    applyFilters
+);
+
+
+
+// ============================================
+// INITIAL DISPLAY
+// ============================================
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        displayDestinations(
+            getDestinations()
+        );
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
+```

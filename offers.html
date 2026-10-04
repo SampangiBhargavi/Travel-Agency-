@@ -1,0 +1,721 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Offers - WanderWorld</title>
+
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- =========================
+         NAVBAR
+    ========================== -->
+    <nav class="navbar navbar-expand-lg navbar-dark travel-navbar sticky-top">
+
+        <div class="container">
+
+            <a class="navbar-brand fw-bold" href="index.html">
+                <i class="bi bi-airplane-engines-fill"></i>
+                WanderWorld
+            </a>
+
+            <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbar">
+
+                <span class="navbar-toggler-icon"></span>
+
+            </button>
+
+            <div class="collapse navbar-collapse" id="mainNavbar">
+
+                <ul class="navbar-nav ms-auto">
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="destinations.html">Destinations</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="packages.html">Tour Packages</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="gallery.html">Gallery</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link active" href="offers.html">Offers</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="testimonials.html">Testimonials</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+
+                    <li class="nav-item ms-lg-2">
+                        <a class="btn btn-light btn-sm px-3 mt-1 mt-lg-0"
+                           href="login.html">
+                            Login
+                        </a>
+                    </li>
+
+                </ul>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+
+    <!-- =========================
+         PAGE HERO
+    ========================== -->
+    <section class="page-hero">
+
+        <div class="container text-center">
+
+            <h1 class="fw-bold">
+                Special Offers
+            </h1>
+
+            <p class="lead mb-0">
+                Save more on your dream holidays with WanderWorld
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OFFERS SECTION
+    ========================== -->
+    <section class="section-padding">
+
+        <div class="container">
+
+            <!-- Heading -->
+            <div class="text-center mb-4">
+
+                <h2 class="section-title">
+                    Latest Travel Deals
+                </h2>
+
+                <p class="text-muted">
+                    Explore our latest discounts and travel offers.
+                </p>
+
+            </div>
+
+
+            <!-- Search and Filter -->
+            <div class="row g-3 mb-5">
+
+                <div class="col-md-8">
+
+                    <div class="input-group">
+
+                        <span class="input-group-text">
+                            <i class="bi bi-search"></i>
+                        </span>
+
+                        <input type="text"
+                               id="searchOffer"
+                               class="form-control"
+                               placeholder="Search offers...">
+
+                    </div>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <select id="offerStatusFilter"
+                            class="form-select">
+
+                        <option value="All">
+                            All Offers
+                        </option>
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <!-- Result Count -->
+            <div class="d-flex justify-content-between align-items-center mb-3">
+
+                <h6 class="mb-0 text-muted">
+                    Available Offers:
+                    <span id="offerCount">0</span>
+                </h6>
+
+            </div>
+
+
+            <!-- Offer Cards -->
+            <div class="row g-4"
+                 id="offersContainer">
+            </div>
+
+
+            <!-- No Results -->
+            <div id="noOffers"
+                 class="text-center py-5 d-none">
+
+                <i class="bi bi-tag fs-1 text-muted"></i>
+
+                <h4 class="mt-3">
+                    No offers found
+                </h4>
+
+                <p class="text-muted">
+                    Try another search or filter.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         OFFER DETAILS MODAL
+    ========================== -->
+    <div class="modal fade"
+         id="offerModal"
+         tabindex="-1">
+
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+
+            <div class="modal-content">
+
+                <div class="modal-header">
+
+                    <h5 class="modal-title"
+                        id="offerModalTitle">
+                        Offer Details
+                    </h5>
+
+                    <button type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal">
+                    </button>
+
+                </div>
+
+
+                <div class="modal-body">
+
+                    <img id="offerModalImage"
+                         src=""
+                         class="img-fluid rounded mb-4 w-100"
+                         style="max-height:350px; object-fit:cover;"
+                         alt="Offer Image">
+
+                    <h3 id="offerModalHeading"
+                        class="fw-bold">
+                    </h3>
+
+                    <p id="offerModalDescription"
+                       class="text-muted">
+                    </p>
+
+                    <div class="row g-3 mt-2">
+
+                        <div class="col-md-6">
+
+                            <div class="border rounded p-3">
+
+                                <small class="text-muted">
+                                    Discount
+                                </small>
+
+                                <h4 id="offerModalDiscount"
+                                    class="text-success fw-bold mb-0">
+                                </h4>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="col-md-6">
+
+                            <div class="border rounded p-3">
+
+                                <small class="text-muted">
+                                    Valid Until
+                                </small>
+
+                                <h5 id="offerModalDate"
+                                    class="fw-bold mb-0">
+                                </h5>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+
+                    <a href="packages.html"
+                       class="btn btn-travel">
+
+                        <i class="bi bi-airplane"></i>
+                        Explore Packages
+
+                    </a>
+
+                    <button type="button"
+                            class="btn btn-secondary"
+                            data-bs-dismiss="modal">
+
+                        Close
+
+                    </button>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="travel-footer">
+
+        <div class="container">
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <h5>
+                        <i class="bi bi-airplane-engines-fill"></i>
+                        WanderWorld
+                    </h5>
+
+                    <p>
+                        Your trusted travel partner for memorable
+                        journeys and unforgettable experiences.
+                    </p>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <h5>
+                        Quick Links
+                    </h5>
+
+                    <ul class="list-unstyled">
+
+                        <li>
+                            <a href="destinations.html">
+                                Destinations
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="packages.html">
+                                Tour Packages
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="offers.html">
+                                Offers
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="contact.html">
+                                Contact
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+
+
+                <div class="col-md-4">
+
+                    <h5>
+                        Contact Us
+                    </h5>
+
+                    <p class="mb-1">
+                        <i class="bi bi-geo-alt"></i>
+                        Hyderabad, Telangana
+                    </p>
+
+                    <p class="mb-1">
+                        <i class="bi bi-telephone"></i>
+                        +91 98765 43210
+                    </p>
+
+                    <p>
+                        <i class="bi bi-envelope"></i>
+                        info@wanderworld.com
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom text-center">
+
+                <p class="mb-0">
+                    © 2026 WanderWorld Travel Agency.
+                    All Rights Reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         BOOTSTRAP
+    ========================== -->
+    <script src="node_modules/bootstrap/dist/js/bootstrap.bundle.js"></script>
+
+    <!-- Offers JavaScript -->
+    <script src="offers.js"></script>
+
+
+    <!-- =========================
+         PAGE JAVASCRIPT
+    ========================== -->
+    <script>
+
+        // Escape HTML
+        function escapeHTML(value) {
+
+            const div = document.createElement("div");
+
+            div.textContent = value ?? "";
+
+            return div.innerHTML;
+        }
+
+
+        // Format date
+        function formatOfferDate(dateValue) {
+
+            if (!dateValue) {
+                return "Not specified";
+            }
+
+            const date = new Date(dateValue);
+
+            return date.toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "short",
+                year: "numeric"
+            });
+        }
+
+
+        // Display offers
+        function displayOffers(offers) {
+
+            const container =
+                document.getElementById("offersContainer");
+
+            const noOffers =
+                document.getElementById("noOffers");
+
+            const count =
+                document.getElementById("offerCount");
+
+
+            container.innerHTML = "";
+
+            count.textContent = offers.length;
+
+
+            if (offers.length === 0) {
+
+                noOffers.classList.remove("d-none");
+
+                return;
+
+            }
+
+            noOffers.classList.add("d-none");
+
+
+            offers.forEach(function (offer) {
+
+                const expired =
+                    isOfferExpired(offer.validUntil);
+
+                const status =
+                    expired ? "Expired" : offer.status;
+
+
+                const statusClass =
+                    status === "Active"
+                        ? "bg-success"
+                        : "bg-secondary";
+
+
+                const card = document.createElement("div");
+
+                card.className = "col-md-6 col-lg-4";
+
+
+                card.innerHTML = `
+
+                    <div class="card h-100 shadow-sm border-0 overflow-hidden">
+
+                        <img src="${escapeHTML(offer.image)}"
+                             class="card-img-top"
+                             alt="${escapeHTML(offer.title)}"
+                             style="height:220px; object-fit:cover;">
+
+                        <div class="card-body d-flex flex-column">
+
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+
+                                <span class="badge ${statusClass}">
+                                    ${status}
+                                </span>
+
+                                <span class="badge bg-danger">
+                                    ${escapeHTML(String(offer.discount))}% OFF
+                                </span>
+
+                            </div>
+
+
+                            <h5 class="fw-bold">
+                                ${escapeHTML(offer.title)}
+                            </h5>
+
+
+                            <p class="text-muted">
+                                ${escapeHTML(offer.description)}
+                            </p>
+
+
+                            <div class="mt-auto">
+
+                                <div class="small text-muted mb-3">
+
+                                    <i class="bi bi-calendar-event"></i>
+
+                                    Valid until:
+                                    ${formatOfferDate(offer.validUntil)}
+
+                                </div>
+
+
+                                <button class="btn btn-travel w-100"
+                                        onclick="openOffer(${offer.id})">
+
+                                    <i class="bi bi-eye"></i>
+                                    View Offer
+
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        // Open offer modal
+        function openOffer(id) {
+
+            const offer = getOfferById(id);
+
+            if (!offer) {
+                return;
+            }
+
+
+            document.getElementById("offerModalTitle")
+                .textContent = offer.title;
+
+
+            document.getElementById("offerModalHeading")
+                .textContent = offer.title;
+
+
+            document.getElementById("offerModalDescription")
+                .textContent = offer.description;
+
+
+            document.getElementById("offerModalDiscount")
+                .textContent = offer.discount + "% OFF";
+
+
+            document.getElementById("offerModalDate")
+                .textContent = formatOfferDate(
+                    offer.validUntil
+                );
+
+
+            document.getElementById("offerModalImage")
+                .src = offer.image;
+
+
+            const modal =
+                new bootstrap.Modal(
+                    document.getElementById("offerModal")
+                );
+
+            modal.show();
+
+        }
+
+
+        // Apply filters
+        function applyOfferFilters() {
+
+            const searchText =
+                document.getElementById("searchOffer")
+                    .value
+                    .toLowerCase()
+                    .trim();
+
+
+            const status =
+                document.getElementById("offerStatusFilter")
+                    .value;
+
+
+            let offers = getOffers();
+
+
+            // Search
+            if (searchText) {
+
+                offers = offers.filter(function (offer) {
+
+                    return (
+                        offer.title
+                            .toLowerCase()
+                            .includes(searchText) ||
+
+                        offer.description
+                            .toLowerCase()
+                            .includes(searchText)
+                    );
+
+                });
+
+            }
+
+
+            // Status filter
+            if (status !== "All") {
+
+                offers = offers.filter(function (offer) {
+
+                    return offer.status === status;
+
+                });
+
+            }
+
+
+            displayOffers(offers);
+
+        }
+
+
+        // Search event
+        document
+            .getElementById("searchOffer")
+            .addEventListener(
+                "input",
+                applyOfferFilters
+            );
+
+
+        // Filter event
+        document
+            .getElementById("offerStatusFilter")
+            .addEventListener(
+                "change",
+                applyOfferFilters
+            );
+
+
+        // Initial display
+        displayOffers(getOffers());
+
+    </script>
+
+</body>
+
+</html>
+```
